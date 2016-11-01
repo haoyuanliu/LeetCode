@@ -53,10 +53,10 @@ public:
 class Solution {
     ListNode *zero = new ListNode(0);
     ListNode *res = new ListNode(-1);
-    ListNode *p = res; 
+    ListNode *p = res;
     int carry = 0;
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
     {
         if(l1 && l2)
         {
@@ -73,5 +73,4 @@ public:
         }
         return res->next;
     }
-    
 };
