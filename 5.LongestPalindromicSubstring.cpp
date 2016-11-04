@@ -15,10 +15,10 @@ class Solution
             for(int i = 1; i < len; ++i)
             {
                 p = i;
-                while(s[i] == s[i+1])
+                while(str[i] == str[i+1])
                     i++;
                 q = i;
-                while(s[p-1] == s[q+1])
+                while(str[p-1] == str[q+1])
                 {
                     p--;
                     q++;
@@ -30,7 +30,7 @@ class Solution
                     max = q-p+1;
                 }
             }
-            str = str.substr(start+1, max);
+            str = str.substr(start, max);
             return str;
         }
 };
