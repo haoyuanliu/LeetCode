@@ -11,9 +11,12 @@ class Solution
             int temp;
             while(p)
             {
+                if(res > (0x7FFFFFFF)/10 || res < (1<<31)/10)
+                    return 0;
                 temp = p % 10;
                 p = p / 10;
                 res = res * 10 + temp;
+                cout << res << endl;
             }
             return res;
         }
