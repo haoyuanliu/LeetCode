@@ -7,45 +7,29 @@ class Solution
     public:
         bool isMatch(string s, string p)
         {
-            int la = s.size();
-            int lb = p.size();
-            int i, j;
-            i = j  = 0;
-            while(i < la && j <lb)
+            if(p.size() == 0)
+                return s.size() == 0;
+            if(p.size() == 1)
+                return (s.size() == 1) && (s[0] == p[0] || p[0] == '.');
+            if(p[1] == '*')
             {
-                if(s[i] == p[j])
+                while(s.size() && (s[0]==p[0] || p[0] == '.'))
                 {
-                    if(p[i+1] == '*')
-                    {
-                        if(s[j+1] == s[j])
-                            i++;
-                        else
-                        {
-                            i++;
-                            j++;
-                        }
-                    }
-                    else
-                    {
-                        i++;
-                        j++;
-                    }
+                    if(isMatch(s, p.substr(2)))
+                        return true;
+                    s = s.substr(1);
                 }
-                else
-                {
-                    if(p[i+1] == '*')
-                    {
-                        i++;
-                        j++;
-                        j++;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+                return isMatch(s, p.substr(2));
             }
-            return true;
+            else
+            {
+                if(s.size() == 0)
+                    return false;
+                if(s[0]==p[0] || p[0] == '.')
+                    return isMatch(s.substr(1), p.substr(1));
+                else
+                    return false;
+            }
         }
 };
 
