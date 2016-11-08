@@ -8,6 +8,8 @@ struct ListNode
     ListNode(int x) : val(x), next(NULL) {}
 };
 
+//Approach 1
+
 class Solution
 {
     public:
@@ -39,6 +41,29 @@ class Solution
                 pre = p;
                 p = p->next;
             }
+        }
+};
+
+//Approach 2
+
+class Solution
+{
+    public:
+        ListNode* removeNthFromEnd(ListNode* head, int n)
+        {
+            ListNode *root = new ListNode(0);
+            root->next = head;
+            ListNode *p, *c;
+            p = c = root;
+            for(int i = 0; i < n+1; ++i)
+                c = c->next;
+            while(c)
+            {
+                p = p->next;
+                c = c->next;
+            }
+            p->next = p->next->next;
+            return root->next;
         }
 };
 
