@@ -13,7 +13,7 @@ class Solution
     public:
         ListNode* swapPairs(ListNode* head)
         {
-            if(!head->next)
+            if(!head && !head->next)
                 return head;
             ListNode* root = new ListNode(0);
             root->next = head;
