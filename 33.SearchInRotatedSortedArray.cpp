@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 class Solution
@@ -7,7 +8,30 @@ class Solution
     public:
         int search(vector<int> &nums, int target)
         {
-
+            int len = nums.size();
+            if(target <= nums[len-1])
+            {
+                for(int i = len-1; i >= 0; --i)
+                {
+                    if(target == nums[i])
+                        return i;
+                    if(nums[i] > nums[len-1])
+                        break;
+                }
+            }
+            else if(target > nums[len-1] && target < nums[0])
+                return -1;
+            else
+            {
+                for(int i = 0; i < len; ++i)
+                {
+                    if(target == nums[i])
+                        return i;
+                    if(nums[i] < nums[0])
+                        break;
+                }
+            }
+            return -1;
         }
 };
 
