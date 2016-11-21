@@ -42,6 +42,5 @@ class Solution
 
 int main()
 {
-    Solution demo;
     return 0;
 }
