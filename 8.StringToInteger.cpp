@@ -26,7 +26,7 @@ class Solution
                         if(neg)
                             return (1<<31);
                         else
-                            return (0x7fffffff);   
+                            return (0x7fffffff);
                 }
                 else if(res == (0x7fffffff)/10)
                 {
@@ -61,10 +61,10 @@ class Solution
                         count++;
                     }
                     else
-                        return 0;   
+                        return 0;
                 }
                 else if(str[i] == '-')
-                {  
+                {
                     if(count == 0)
                     {
                         neg = true;
