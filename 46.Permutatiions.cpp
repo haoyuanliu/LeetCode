@@ -28,7 +28,7 @@ class Solution
             {
                 i = j = len - 1;
 
-                while(temp[i-1] >= temp[i] && i > 0)
+                while(temp[i-1] >= temp[i])
                     i--;
 
                 while(temp[j] <= temp[i-1])
