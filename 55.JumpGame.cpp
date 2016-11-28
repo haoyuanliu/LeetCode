@@ -26,6 +26,24 @@ class Solution
         }
 };
 
+class Solution
+{
+    public:
+        bool canJump(vector<int> &nums)
+        {
+            int len = nums.size();
+            int cover = 0;
+            for(int i = 0; i < len; ++i)
+            {
+                if(cover >= len - 1)
+                    return true;
+                if(cover >= i)
+                    cover = max(cover, i + nums[i]);
+            }
+            return false;
+        }
+};
+
 int main()
 {
     Solution demo;
