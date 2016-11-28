@@ -10,27 +10,25 @@ class Solution
         {
             vector<vector<int> > res;
             vector<int> temp;
+            int size = 1;
+            int i, j;
+
             res.push_back(nums);
             int len = nums.size();
             if(len == 1)
-            {
                 return res;
-            }
-            int size = 1;
+
             for(int i = 0; i < len; ++i)
             {
                 size = size * (i+1);
                 temp.push_back(i+1);
             }
             size = size-1;
-            int i, j;
             while(size--)
             {
                 i = j = len - 1;
-
                 while(temp[i-1] >= temp[i])
                     i--;
-
                 while(temp[j] <= temp[i-1])
                     j--;
                 swap(temp[i-1], temp[j]);
