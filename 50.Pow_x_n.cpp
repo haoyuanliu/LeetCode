@@ -7,18 +7,19 @@ class Solution
     public:
         double myPow(double x, int n)
         {
-            double res= 1;
-            if(n < 0)
+            double res = 1;
+            long long newn = n;
+            if(newn < 0)
             {
-                n = - n;
-                x = 1 / x;
+                newn = -newn;
+                x = 1.0 / x;
             }
-            while(n)
+            while(newn > 0)
             {
-                if(n&1)
+                if(newn&1)
                     res = res * x;
                 x = x * x;
-                n = n>>1;
+                newn = newn>>1;
             }
             return res;
         }
