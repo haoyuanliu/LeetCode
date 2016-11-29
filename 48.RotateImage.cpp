@@ -2,6 +2,7 @@
 #include <vector>
 using namespace std;
 
+//Solution I
 class Solution
 {
     public:
@@ -24,6 +25,7 @@ class Solution
         }
 };
 
+//Solution II
 class Solution
 {
     public:
@@ -31,12 +33,13 @@ class Solution
         {
             int size = matrix.size();
             for(int i = 0; i < size; ++i)
-                for(int j = 0; j < size - i; ++j)
+                for(int j = 0; j < size - i - 1; ++j)
                     swap(matrix[i][j], matrix[size-1-i][size-1-j]);
             reverse(matrix.begin(), matrix.end());
         }
 };
 
+//Solution III
 class Solution
 {
     public:
