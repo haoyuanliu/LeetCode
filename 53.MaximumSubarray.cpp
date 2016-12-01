@@ -7,8 +7,8 @@ class Solution
     public:
         int maxSubArray(vector<int> &nums)
         {
-            int res = (1<<31);
-            int sum = nums[0];
+            int res = nums[0];
+            int sum = 0;
             for(int i = 0; i < nums.size(); ++i)
             {
                 if(sum < 0)
