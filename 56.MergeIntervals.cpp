@@ -13,10 +13,7 @@ struct Interval
 
 bool compare(pair<int, int> a, pair<int, int> b)
 {
-    if(a.first == b.first)
-        return abs(a.second) > abs(b.second);
-    else
-        return a.first < b.first;
+    return a.first < b.first;
 }
 class Solution
 {
@@ -32,20 +29,24 @@ class Solution
                 temp.push_back(make_pair(intervals[i].end, -(i+1)));
             }
             sort(temp.begin(), temp.end(), compare);
-            for(const auto x : temp)
-                cout << x.first << " " << x.second << endl;
-            cout << endl;
             int count = 0;
             int l, r;
+            bool sucess = true;
             for(int i = 0; i < temp.size(); ++i)
             {
-                if(count == 0)
+                if(count == 0 && sucess)
+                {
                     l = temp[i].first;
+                    sucess = false;
+                }
                 count += temp[i].second;
                 if(count == 0)
                 {
+                    if(i < temp.size()-1 && temp[i].first == temp[i+1].first)
+                        continue;
                     r = temp[i].first;
                     res.push_back(Interval(l, r));
+                    sucess = true;
                 }
             }
             return res;
