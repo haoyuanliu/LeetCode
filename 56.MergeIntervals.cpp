@@ -11,6 +11,7 @@ struct Interval
     Interval(int s, int e) : start(s), end(e) {}
 };
 
+//Solution I 26ms
 bool compare(pair<int, int> a, pair<int, int> b)
 {
     return a.first < b.first;
@@ -52,6 +53,45 @@ class Solution
             return res;
         }
 };
+
+
+//Solution II 16ms
+bool comp(Interval a, Interval b)
+{
+    return a.start < b.start;
+}
+
+class Solution
+{
+    public:
+        vector<Interval> merge(vector<Interval> &inter)
+        {
+            vector<Interval> res;
+            int len = inter.size();
+            if(len == 0)
+                return res;
+            sort(inter.begin(), inter.end(), comp);
+            int lastStart = inter[0].start;
+            int lastEnd = inter[0].end;
+            for(int i = 0; i < len; ++i)
+            {
+                if(inter[i].start <= lastEnd)
+                {
+                    lastEnd = max(lastEnd, inter[i].end);
+                }
+                else
+                {
+                    res.push_back(Interval(lastStart, lastEnd));
+                    lastStart = inter[i].start;
+                    lastEnd = inter[i].end;
+                }
+            }
+            res.push_back(Interval(lastStart, lastEnd));
+            return res;
+        }
+
+};
+
 
 int main()
 {
