@@ -50,6 +50,30 @@ class Solution
         }
 };
 
+class Solution
+{
+    public:
+        int uniquePaths(int m, int n)
+        {
+            int res[2][n+1];
+            for(int i = 0; i <= n; ++i)
+                res[0][i] = 1;
+            for(int i = 1; i < m; ++i)
+            {
+                for(int j = 1; j <= n; ++j)
+                {
+                    if(j == 1)
+                        res[1][j] = 1;
+                    else
+                        res[1][j] = res[0][j] + res[1][j-1];
+                }
+                for(int k = 0; k <= n; ++k)
+                    res[0][k] = res[1][k];
+            }
+            return res[0][n];
+        }
+};
+
 int main()
 {
     Solution demo;
