@@ -31,6 +31,7 @@ class Solution
         }
 };
 
+
 int main()
 {
     Solution res;
