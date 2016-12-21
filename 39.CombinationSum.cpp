@@ -40,6 +40,36 @@ class Solution
         }
 };
 
+class Solution
+{
+    public:
+        vector<vector<int> > combinationSum(vector<int>& candidates, int target)
+        {
+            vector<vector<int> > res;
+            vector<int> temp;
+            sort(candidates.begin(), candidates.end());
+            solve(res, temp, candidates, 0, target, 0);
+            return res;
+        }
+        void solve(vector<vector<int> > &res, vector<int> &temp, vector<int> candidates, int cur, int target, int sum)
+        {
+            if(sum == target)
+            {
+                res.push_back(temp);
+                return;
+            }
+            for(int i = cur; i < candidates.size(); ++i)
+            {
+                if(sum + candidates[i] <= target)
+                {
+                    temp.push_back(candidates[i]);
+                    solve(res, temp, candidates, i, target, sum+candidates[i]);
+                    temp.pop_back();
+                }
+            }
+        }
+};
+
 int main()
 {
     return 0;
