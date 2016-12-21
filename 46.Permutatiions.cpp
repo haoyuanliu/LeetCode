@@ -47,6 +47,32 @@ class Solution
         }
 };
 
+class Solution
+{
+    public:
+        vector<vector<int> > permute(vector<int> &nums)
+        {
+            vector<vector<int> > res;
+            dfs(res, nums, 0);
+            return res;
+        }
+        void dfs(vector<vector<int> > &res, vector<int> &nums, int cur)
+        {
+            if(cur >= nums.size())
+            {
+                res.push_back(nums);
+                return;
+            }
+            for(int i = cur; i < nums.size(); ++i)
+            {
+                swap(nums[cur], nums[i]);
+                dfs(res, nums, cur+1);
+                swap(nums[cur], nums[i]);
+            }
+        }
+};
+
+
 int main()
 {
     Solution demo;
