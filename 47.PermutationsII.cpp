@@ -34,6 +34,33 @@ class Solution
         }
 };
 
+class Solution
+{
+    public:
+        vector<vector<int> > permuteUnique(vector<int> & nums)
+        {
+            vector<vector<int> > res;
+            sort(nums.begin(), nums.end());
+            dfs(res, nums, 0);
+            return res;
+        }
+        void dfs(vector<vector<int> > &res, vector<int> nums, int cur)
+        {
+            if(cur == nums.size()-1)
+            {
+                res.push_back(nums);
+                return;
+            }
+            for(int i = cur; i < nums.size(); ++i)
+            {
+                if(i != cur && nums[cur] == nums[i])
+                    continue;
+                swap(nums[cur], nums[i]);
+                dfs(res, nums, cur+1);
+            }
+        }
+};
+
 int main()
 {
     Solution demo;
