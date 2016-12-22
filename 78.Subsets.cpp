@@ -29,6 +29,32 @@ class Solution
         }
 };
 
+class Solution
+{
+    public:
+        vector<vector<int> > subsets(vector<int> &nums)
+        {
+            vector<vector<int> > res;
+            vector<int> temp;
+            int len = nums.size();
+            int index = 0;
+            for(int i = 0; i < (1<<len); ++i)
+            {
+                temp.clear();
+                index = 0;
+                while(i >= (1<<index))
+                {
+                    if(i & (1<<index))
+                        temp.push_back(nums[index]);
+                    index++;
+                }
+                res.push_back(temp);
+            }
+            return res;
+        }
+};
+
+
 int main()
 {
     return 0;
