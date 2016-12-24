@@ -27,6 +27,27 @@ class Solution
         }
 };
 
+class Solution
+{
+    public:
+        vector<int> singleNumber(vector<int> &nums)
+        {
+            vector<int> res(2, 0);
+            int temp = 0;
+            for(int i = 0; i < nums.size(); ++i)
+                temp ^= nums[i];
+            temp &= -temp;
+            for(int i = 0; i < nums.size(); ++i)
+            {
+                if(temp & nums[i])
+                    res[0] ^= nums[i];
+                else
+                    res[1] ^= nums[i];
+            }
+            return res;
+        }
+};
+
 int main()
 {
     return 0;
