@@ -94,11 +94,6 @@ class Solution
 };
 
 
-bool cmp(const pair<int, int> a, const pair<int, int> b)
-{
-    return a.first < b.first; 
-}
-
 class Solution
 {
     public:
