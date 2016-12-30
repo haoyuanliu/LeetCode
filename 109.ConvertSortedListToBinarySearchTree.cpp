@@ -13,7 +13,7 @@ class Solution
                 len++;
                 p = p->next;
             }
-            return dfs(head, 0, len-1);
+            return dfs(head, 1, len);
         }
 
         TreeNode *dfs(ListNode *head, int left, int right)
@@ -26,7 +26,7 @@ class Solution
             if(left > right)
                 return NULL;
             ListNode *temp = head;
-            int mid = (left + right) / 2;
+            int mid = (left + right + 1) / 2;
             for(int i = left; i < mid; ++i)
                 temp = temp->next;
             TreeNode *root = new TreeNode(temp->val);
