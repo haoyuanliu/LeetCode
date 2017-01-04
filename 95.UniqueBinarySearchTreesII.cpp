@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 /**
@@ -11,51 +12,45 @@ using namespace std;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
 class Solution
 {
 public:
     vector<TreeNode*> generateTrees(int n)
     {
-        vector<TreeNode *> res;
-        vector<int> nums(n, 0);
-        for(int i = 0; i < n; ++i)
-            nums[i] = i+1;
-
+        vector<TreeNode*> res;
+        if(n == 0)
+            return res;
+        return getTree(1, n);
     }
-    void buildTree(vector<TreeNode *> &res, TreeNode *root, vector<int> &nums, int cur)
+    vector<TreeNode*> getTree(int start, int end)
     {
-        if(cur == 0)
+        vector<TreeNode*> res;
+        if(start > end)
         {
-            root = new TreeNode(nums[cur]);
-            buildTree(res, nums, cur+1);
+            res.push_back(NULL);
+            return res;
         }
-        else if(cur == nums.size())
+        if(start == end)
         {
-            res.push_back(root);
-            return;
+            res.push_back(new TreeNode(start));
+            return res;
         }
-        else
+        for(int i = start; i <= end; ++i)
         {
-            TreeNode *p = root;
-            while(p)
+            vector<TreeNode*> left = getTree(start, i-1);
+            vector<TreeNode*> right = getTree(i+1, end);
+            for(const auto l : left)
             {
-                if(p == NULL)
-                    p = new TreeNode(nums[cur]);
-                else
+                for(const auto r : right)
                 {
-                    if(nums[cur] < p->val)
-                    {
-                        p = p->left;
-                    }
-                    else
-                    {
-                        if(p->left)
-                            return;
-                        p = p->right;
-                    }
+                    TreeNode* root = new TreeNode(i);
+                    root->left = l;
+                    root->right = r;
+                    res.push_back(root);
                 }
             }
         }
+        return res;
     }
-    void dfs(vector<TreeNode *> &res, vector<int> &nums,)
 };
