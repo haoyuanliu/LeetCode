@@ -1,7 +1,7 @@
-class Solution 
+class Solution
 {
 public:
-    int pathSum(TreeNode* root, int sum) 
+    int pathSum(TreeNode* root, int sum)
     {
     	if(root == NULL)
     		return 0;
