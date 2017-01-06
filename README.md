@@ -1,2 +1,2 @@
 # LeetCode
-## LeetCode 练习题解
+## LeetCode练习题解
