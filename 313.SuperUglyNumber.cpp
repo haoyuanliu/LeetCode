@@ -32,14 +32,14 @@ public:
     int nthSuperUglyNumber(int n, vector<int>& primes)
     {
         vector<int> res(n, 1);
-        if(n == 1) return res[0];
         vector<int> idx(primes.size(), 0);
+        if(n == 1) return res[0];
         for(int i = 1; i < n; ++i)
         {
             res[i] = 0x7fffffff;
             for(int j = 0; j < primes.size(); ++j)
             {
-                res[i] = min(res[i], res[idx[j]] * primes[j]);
+                res[i] = min(res[i], primes[j] * res[idx[j]]);
             }
             for(int j = 0; j < primes.size(); ++j)
             {
