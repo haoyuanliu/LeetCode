@@ -13,14 +13,13 @@ public:
         }
         for(auto it = m.begin(); it != m.end(); ++it)
         {
-            que.push(make_pair((*it).first, (*it).second));
+            que.push(make_pair((*it).second, (*it).first));
         }
         while(!que.empty())
         {
             for(int i = 0; i < que.top().first; ++i)
             {
-                char temp = que.top().second;
-                res += temp;
+                res += que.top().second;
             }
             que.pop();
         }
