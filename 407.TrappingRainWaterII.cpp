@@ -6,5 +6,6 @@ public:
         int res = 0;
         if(heightMap.size() <= 2)
             return res;
+        return res;
     }
 };
