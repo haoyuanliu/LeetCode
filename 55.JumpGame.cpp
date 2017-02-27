@@ -44,6 +44,23 @@ class Solution
         }
 };
 
+class Solution
+{
+public:
+    bool canJump(vector<int>& nums)
+    {
+        int len = nums.size();
+        int maxJump = nums[0];
+        for(int i = 1; i < len; ++i)
+        {
+            if(maxJump == 0)
+                return false;
+            maxJump = max(--maxJump, nums[i]);
+        }
+        return true;
+    }
+};
+
 int main()
 {
     Solution demo;
