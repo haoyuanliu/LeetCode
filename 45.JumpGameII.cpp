@@ -18,11 +18,40 @@ class Solution
                     count++;
                     lastJump = curJump;
                 }
+                if(lastJump >= len-1)
+                    return count;
                 if(curJump >= i)
                     curJump = max(curJump, i + nums[i]);
             }
             return count;
         }
+};
+
+class Solution
+{
+public:
+    int jump(vector<int>& nums)
+    {
+        int res = 0;
+        int len = nums.size();
+        int start = 0;
+        int cover = 0;
+        int temp;
+        while(cover < len - 1)
+        {
+            temp = cover;
+            for(int i = start; i <= temp; ++i)
+            {
+                if(i+nums[i] > cover)
+                {
+                    start = i+1;
+                    cover = i+nums[i];
+                }
+            }
+            res++;
+        }
+        return res;
+    }
 };
 
 int main()
