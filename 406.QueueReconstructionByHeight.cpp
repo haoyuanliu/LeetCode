@@ -24,3 +24,21 @@ public:
         return res;
     }
 };
+
+class Solution
+{
+public:
+    vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>& people)
+    {
+        auto comp = [](const pair<int, int> &a, const pair<int, int> &b)
+        {
+            return a.first > b.first || (a.first == b.first && a.second < b.second);
+        };
+
+        vector<pair<int, int>> res;
+        sort(people.begin(), people.end(), comp);
+        for(auto p : people)
+            res.insert(res.begin()+p.second, p);
+        return res;
+    }
+};
