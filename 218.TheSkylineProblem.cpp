@@ -4,16 +4,16 @@
 #include <queue>
 #include <algorithm>
 using namespace std;
-    
+
 bool cmp(const pair<int, int> a, const pair<int, int> b)
 {
     return a.first != b.first ? a.first < b.first : a.second < b.second;
 }
 
-class Solution 
+class Solution
 {
     public:
-        vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) 
+        vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings)
         {
             vector<pair<int, int>> res;
             vector<pair<int, int>> heights;
