@@ -207,3 +207,44 @@ public:
     }
     
 };
+
+class Solution {
+public:
+    struct Node
+    {
+        int val, smaller;
+        Node *left, *right;
+        Node(int v, int s) : val(v), smaller(s), left(NULL), right(NULL) {}
+    };
+    vector<int> countSmaller(vector<int>& nums) 
+    {
+        int len = nums.size();
+        if(len == 0) return vector<int>();
+        vector<int> res(len);
+        Node* root = NULL;
+        for(int i = len-1; i >= 0; --i)
+        {
+            res[i] = insert(root, nums[i]);
+        }
+        return res;
+    }
+    
+    int insert(Node* &root, int val)
+    {
+        if(root == NULL)
+        {
+            root = new Node(val, 0);
+            return 0;
+        }
+        
+        if(root->val > val)
+        {
+            root->smaller++;
+            return insert(root->left, val);
+        }
+        else
+        {
+            return insert(root->right, val) + root->smaller + (root->val < val ? 1 : 0);
+        }
+    }
+};
