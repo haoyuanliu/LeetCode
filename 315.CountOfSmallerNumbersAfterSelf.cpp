@@ -146,3 +146,64 @@ int main()
 {
     return 0;
 }
+
+
+class Solution {
+public:
+    vector<int> countSmaller(vector<int>& nums) 
+    {
+        int len = nums.size();
+        if(len == 0) return vector<int>();
+        vector<int> res(len, 0);
+        vector<int> index;
+        for(int i = 0; i < len; ++i)
+            index.push_back(i);
+        vector<int> updateNum(nums);
+        vector<int> updateIndex(index);
+        mergeSort(nums, res, index, updateNum, updateIndex, 0, len);
+        return res;
+    }
+    
+    void mergeSort(vector<int> &nums, vector<int> &res, vector<int> &index, vector<int> &updateNum, vector<int> &updateIndex, int left, int right)
+    {
+        if(right - left < 2) return;
+        int mid = (left + right) / 2;
+        mergeSort(nums, res, index, updateNum, updateIndex, mid, right);
+        mergeSort(nums, res, index, updateNum, updateIndex, left, mid);
+        
+        int i = mid-1;
+        int j = right-1;
+        int cur = right-1;
+        while(i >= left && j >= mid)
+        {
+            if(nums[i] > nums[j])
+            {
+                res[index[i]] += j - mid + 1;
+                updateNum[cur] = nums[i];
+                updateIndex[cur--] = index[i--];  
+            }
+            else
+            {
+                updateNum[cur] = nums[j];
+                updateIndex[cur--] = index[j--];
+            }
+        }
+        while(i >= left)
+        {
+            updateNum[cur] = nums[i];
+            updateIndex[cur--] = index[i--];
+        }
+        while(j >= mid)
+        {
+            updateNum[cur] = nums[j];
+            updateIndex[cur--] = index[j--];
+        }
+        
+        for(i = left; i < right; ++i)
+        {
+            nums[i] = updateNum[i];
+            index[i] = updateIndex[i];
+        }
+    }
+    
+};
